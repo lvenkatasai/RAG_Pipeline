@@ -1,0 +1,117 @@
+================================================================================
+RAG PIPELINE PROJECT DOCUMENTATION
+================================================================================
+
+PROJECT OVERVIEW
+----------------
+This is a Retrieval-Augmented Generation (RAG) pipeline that allows users to ask questions about PDF documents. The pipeline reads PDF files, splits them into chunks, generates embeddings, stores them in a vector database (FAISS), and retrieves relevant chunks to answer user queries.
+
+WHAT WE BUILT
+-------------
+- A complete RAG pipeline using Python 3.14.7
+- Streamlit web interface for user interaction
+- Integration of PDF processing, text chunking, embedding generation, and vector search
+
+TECHNOLOGIES & PACKAGES USED
+----------------------------
+- Python 3.14.7 (new virtual environment)
+- streamlit - Web UI framework
+- pymupdf (fitz) - PDF reading and text extraction
+- sentence-transformers - Text embedding generation (all-MiniLM-L6-v2 model)
+- faiss-cpu - Vector similarity search and indexing
+- numpy - Numerical operations
+- requests - HTTP requests (if needed for APIs)
+
+PROJECT STRUCTURE
+-----------------
+RAG-Pipeline/
+├── app.py              - Main Streamlit application (RAG pipeline)
+├── src/
+│   ├── pdf_reader.py   - Reads PDFs using PyMuPDF
+│   ├── chunker.py      - Splits text into chunks with overlap
+│   └── embedder.py     - Generates embeddings using sentence-transformers
+├── data/               - PDF documents (7 files)
+│   ├── API_Reference.pdf
+│   ├── Employee_Handbook.pdf
+│   ├── FAQ_Support.pdf
+│   ├── Onboarding_Guide.pdf
+│   ├── Pricing_and_SLA.pdf
+│   ├── Product_Manual.pdf
+│   └── Security_Policy.pdf
+├── venv/               - Python 3.14.7 virtual environment
+├── requirements.txt    - Package dependencies
+└── PROJECT_DOCUMENTATION.txt - This file
+
+HOW THE PIPELINE WORKS
+----------------------
+CHUNKING STRATEGY (like cutting a long book into readable pages)
+- We split text into chunks of 500 characters with 100-character overlap
+- Analogy: Like slicing a long sandwich into bite-sized pieces with some overlap so you don't miss the filling between slices
+- This preserves context across chunk boundaries
+
+EMBEDDING STRATEGY (like giving each chunk a unique fingerprint)
+- Uses sentence-transformers with "all-MiniLM-L6-v2" model
+- Converts text into 384-dimensional vectors
+- Analogy: Like translating each chunk into a unique coordinate in a 384-dimensional space where similar meanings are close together
+
+1. PDF READING (src/pdf_reader.py)
+   - Uses PyMuPDF (fitz) to open PDF files
+   - Extracts text from each page
+   - Returns structured document data
+
+2. TEXT CHUNKING (src/chunker.py)
+   - Splits long text into smaller chunks (default: 500 chars)
+   - Uses overlap (default: 100 chars) to maintain context
+   - Keeps track of document source and page number
+
+3. EMBEDDING GENERATION (src/embedder.py)
+   - Uses sentence-transformers with "all-MiniLM-L6-v2" model
+   - Converts text chunks into 384-dimensional vectors
+   - These embeddings capture semantic meaning
+
+4. VECTOR STORAGE & RETRIEVAL (app.py)
+   - Uses FAISS (Facebook AI Similarity Search) for fast vector search
+   - Builds an index from all chunk embeddings
+   - For a query, generates its embedding and finds closest chunks
+
+5. ANSWER GENERATION (app.py)
+   - Retrieves top-k similar chunks
+   - Combines their text as context
+   - Displays results in Streamlit UI
+
+HOW WE IMPLEMENTED THIS (COMPLETE PROJECT)
+------------------------------------------
+- Created new venv with Python 3.14.7 (deleted old venv, rebuilt fresh)
+- Installed 70+ packages including streamlit, pymupdf, sentence-transformers, faiss-cpu, numpy, torch, transformers
+- Implemented app.py integrating all pipeline stages
+- Built FAISS index for vector retrieval
+- Created README.md and PROJECT_DOCUMENTATION.txt
+- Tested end-to-end: 7 PDFs → 20 pages → 48 chunks → 384-dim embeddings → retrieval working
+- Added analogies: chunking = sandwich slices, embeddings = fingerprint/coordinates
+- Disabled Streamlit analytics to avoid email prompts
+- All source files preserved: pdf_reader.py, chunker.py, embedder.py
+
+HOW TO RUN THE PROJECT
+----------------------
+1. Ensure you have the source code and venv folder
+2. Activate the virtual environment:
+   .\venv\Scripts\Activate.ps1
+3. Run the Streamlit app:
+   streamlit run app.py
+4. To skip the email prompt:
+   $env:STREAMLIT_BROWSER_GATHER_USAGE_STATS="false"
+   streamlit run app.py --server.headless true
+
+TEST RESULTS
+------------
+- Loaded 20 pages from 7 PDF files
+- Created 48 text chunks
+- Generated embeddings with shape: (48, 384)
+- Pipeline executes successfully
+
+NOTES
+-----
+- .gitignore excludes (venv) folder to avoid committing virtual environment
+- The sentence-transformers model downloads on first run (~90MB)
+- FAISS provides fast similarity search
+- The pipeline is modular - each component can be used independently
