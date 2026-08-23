@@ -1,0 +1,106 @@
+SAMPLE QA VERIFICATION LOG
+==========================
+
+Purpose
+-------
+These expected answers were manually checked against the supplied PDFs. Source
+labels use the project's actual 500-character chunks with 100-character overlap.
+They are a verification set, not a claim that a particular OpenRouter model was
+run during project preparation. Exact wording may vary, but facts must remain
+grounded in the listed source chunks.
+
+1. ANSWERABLE
+Question: How long do access tokens and refresh tokens remain valid?
+Expected answer: Access tokens expire after 3600 seconds, and refresh tokens are
+valid for 30 days.
+Sources:
+- API_Reference.pdf | Page 2 | Chunk 1
+
+2. ANSWERABLE
+Question: What are the Enterprise API rate and burst limits?
+Expected answer: The Enterprise plan allows 6000 requests per minute with a burst
+allowance of 1000.
+Sources:
+- API_Reference.pdf | Page 2 | Chunk 1
+
+3. ANSWERABLE
+Question: How much PTO can a full-time employee accrue, and how much carries over?
+Expected answer: Full-time employees accrue 1.75 PTO days per month, up to 21 days
+per calendar year. Up to 10 unused days carry into the following year.
+Sources:
+- Employee_Handbook.pdf | Page 2 | Chunk 1
+
+4. ANSWERABLE
+Question: How much paid parental leave do primary and secondary caregivers receive?
+Expected answer: Primary caregivers receive 16 weeks of paid leave, and secondary
+caregivers receive 6 weeks.
+Sources:
+- Employee_Handbook.pdf | Page 2 | Chunk 2
+
+5. ANSWERABLE
+Question: What equipment stipend do remote and hybrid employees receive?
+Expected answer: They receive a one-time $500 home-office setup stipend within the
+first 90 days and a $200 annual equipment-refresh stipend after that, submitted
+with receipts through an expense report.
+Sources:
+- Employee_Handbook.pdf | Page 2 | Chunk 5
+
+6. ANSWERABLE
+Question: How do I reset my password, and when does the reset link expire?
+Expected answer: Select "Forgot password" on the login page. The link sent to the
+registered email address expires after 24 hours.
+Sources:
+- FAQ_Support.pdf | Page 2 | Chunk 1
+
+7. ANSWERABLE
+Question: Which accounts are required to use two-factor authentication?
+Expected answer: Two-factor authentication is mandatory for Enterprise accounts
+and accounts with admin-level permissions. It is optional for Free and Standard
+tier accounts.
+Sources:
+- FAQ_Support.pdf | Page 2 | Chunk 2
+
+8. ANSWERABLE
+Question: How is GitHub access granted to a new employee?
+Expected answer: GitHub access requires a manager request and is granted within
+24 hours of the employee's start.
+Sources:
+- Onboarding_Guide.pdf | Page 4 | Chunk 1
+
+9. ANSWERABLE
+Question: What does the Standard plan cost, and what is the annual-billing discount?
+Expected answer: The Standard plan costs $12 per user per month. Annual billing
+receives a 15% discount compared with monthly billing.
+Sources:
+- Pricing_and_SLA.pdf | Page 2 | Chunk 1
+
+10. ANSWERABLE
+Question: How are SLA credits calculated and capped?
+Expected answer: Eligible customers receive a credit of 5% of that month's fee for
+each 0.1% below the uptime guarantee, capped at 30% of the monthly fee.
+Sources:
+- Pricing_and_SLA.pdf | Page 2 | Chunk 3
+
+11. ANSWERABLE
+Question: How much usable storage do the CSP-200 and CSP-400 provide?
+Expected answer: The CSP-200 provides 4 TB usable storage with RAID 1, while the
+CSP-400 provides 16 TB usable storage with RAID 5.
+Sources:
+- Product_Manual.pdf | Page 3 | Chunk 1
+
+12. ANSWERABLE
+Question: How quickly must a suspected data breach be reported?
+Expected answer: A suspected data breach must be reported to
+security@atmancloud.com within one hour of discovery.
+Sources:
+- Security_Policy.pdf | Page 2 | Chunk 3
+
+13. UNANSWERABLE
+Question: Who is the current CEO of Atman Cloud Consultancy?
+Expected answer: I couldn't find an answer to that in the provided documents.
+Sources: None - the supplied PDFs do not identify a CEO.
+
+14. UNANSWERABLE
+Question: Does the company reimburse gym memberships?
+Expected answer: I couldn't find an answer to that in the provided documents.
+Sources: None - the supplied PDFs do not describe a gym-membership benefit.

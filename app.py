@@ -65,6 +65,7 @@ def build_rag_pipeline():
     st.set_page_config(page_title="RAG Pipeline", layout="wide")
     st.title("RAG Pipeline - Document Q&A")
     st.markdown("Retrieval-Augmented Generation pipeline")
+    st.markdown("Made by L Venkatasai")
     
     with st.spinner("Loading PDFs..."):
         documents = load_documents()
