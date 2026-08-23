@@ -23,6 +23,7 @@ DATA_DIR = Path("data")
 CHUNK_SIZE = 500
 OVERLAP = 100
 TOP_K = 3
+RELEVANCE_THRESHOLD = 0.3  # Below this score, query is considered unrelated to data
 
 
 def load_documents() -> List[Dict]:
@@ -55,6 +56,10 @@ def retrieve_chunks(query: str, chunks: List[Dict], embeddings: np.ndarray, inde
 def generate_answer(query: str, retrieved_chunks: List[Dict]) -> str:
     if not retrieved_chunks:
         return "No relevant documents found."
+    # Check if the top retrieved chunk is relevant enough
+    top_score = retrieved_chunks[0]["score"]
+    if top_score < RELEVANCE_THRESHOLD:
+        return "⚠️ This question doesn't seem to be related to the provided documents. Please ask a question about the content in the uploaded PDFs (API Reference, Employee Handbook, FAQ Support, Onboarding Guide, Pricing and SLA, Product Manual, or Security Policy)."
     context_parts = []
     for chunk in retrieved_chunks:
         context_parts.append(f"[{chunk['document']} Page {chunk['page']} Score: {chunk['score']:.2f}]\n{chunk['text']}")
